@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>BajaPanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BajaPanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">collections</span><span class="s2">.</span><span class="s1">ObservableList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Pos</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">cell</span><span class="s2">.</span><span class="s1">PropertyValueFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">Image</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">Font</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">FontWeight</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">BajaPanel </span><span class="s0">extends </span><span class="s1">BasePanel </span><span class="s2">{</span>
+
+    <span class="s0">private final </span><span class="s1">ObservableList</span><span class="s2">&lt;</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno</span><span class="s2">&gt; </span><span class="s1">alumnos </span><span class="s2">= </span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">alumnos</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">VBox buildContent</span><span class="s2">() {</span>
+        <span class="s1">VBox content </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">40</span><span class="s2">));</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">TOP_CENTER</span><span class="s2">);</span>
+
+        <span class="s1">Label header </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;DAR DE BAJA ALUMNOS&quot;</span><span class="s2">);</span>
+        <span class="s1">header</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s1">Font</span><span class="s2">.</span><span class="s1">font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">FontWeight</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">22</span><span class="s2">));</span>
+        <span class="s1">header</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-underline: true;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">TableView</span><span class="s2">&lt;</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno</span><span class="s2">&gt; </span><span class="s1">table </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TableView</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">table</span><span class="s2">.</span><span class="s1">setItems</span><span class="s2">(</span><span class="s1">alumnos</span><span class="s2">);</span>
+        <span class="s1">table</span><span class="s2">.</span><span class="s1">setPrefHeight</span><span class="s2">(</span><span class="s3">400</span><span class="s2">);</span>
+        <span class="s1">table</span><span class="s2">.</span><span class="s1">setColumnResizePolicy</span><span class="s2">(</span><span class="s1">TableView</span><span class="s2">.</span><span class="s1">CONSTRAINED_RESIZE_POLICY</span><span class="s2">);</span>
+
+        <span class="s1">TableColumn</span><span class="s2">&lt;</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno</span><span class="s2">, </span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">colMatricula </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TableColumn</span><span class="s2">&lt;&gt;(</span><span class="s4">&quot;MATRÍCULA&quot;</span><span class="s2">);</span>
+        <span class="s1">colMatricula</span><span class="s2">.</span><span class="s1">setCellValueFactory</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PropertyValueFactory</span><span class="s2">&lt;&gt;(</span><span class="s4">&quot;matricula&quot;</span><span class="s2">));</span>
+
+        <span class="s1">TableColumn</span><span class="s2">&lt;</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno</span><span class="s2">, </span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">colNombre </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TableColumn</span><span class="s2">&lt;&gt;(</span><span class="s4">&quot;NOMBRE&quot;</span><span class="s2">);</span>
+        <span class="s1">colNombre</span><span class="s2">.</span><span class="s1">setCellValueFactory</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PropertyValueFactory</span><span class="s2">&lt;&gt;(</span><span class="s4">&quot;nombre&quot;</span><span class="s2">));</span>
+
+        <span class="s1">TableColumn</span><span class="s2">&lt;</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno</span><span class="s2">, </span><span class="s1">Void</span><span class="s2">&gt; </span><span class="s1">colEliminar </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TableColumn</span><span class="s2">&lt;&gt;(</span><span class="s4">&quot;ELIMINAR&quot;</span><span class="s2">);</span>
+        <span class="s1">colEliminar</span><span class="s2">.</span><span class="s1">setCellFactory</span><span class="s2">(</span><span class="s1">param -&gt; </span><span class="s0">new </span><span class="s1">TableCell</span><span class="s2">&lt;&gt;() {</span>
+            <span class="s0">private final </span><span class="s1">Button btn </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">();</span>
+
+            <span class="s2">{</span>
+                <span class="s1">ImageView icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageView</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Image</span><span class="s2">(</span><span class="s4">&quot;file:src/main/resources/trash.png&quot;</span><span class="s2">));</span>
+                <span class="s1">icon</span><span class="s2">.</span><span class="s1">setFitWidth</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+                <span class="s1">icon</span><span class="s2">.</span><span class="s1">setFitHeight</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setGraphic</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">);</span>
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: transparent; -fx-cursor: hand;&quot;</span><span class="s2">);</span>
+
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">e -&gt; btn</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #FFCDD2; -fx-cursor: hand;&quot;</span><span class="s2">));</span>
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">e -&gt; btn</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: transparent; -fx-cursor: hand;&quot;</span><span class="s2">));</span>
+
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; </span><span class="s2">{</span>
+                    <span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno alumno </span><span class="s2">= </span><span class="s1">getTableView</span><span class="s2">().</span><span class="s1">getItems</span><span class="s2">().</span><span class="s1">get</span><span class="s2">(</span><span class="s1">getIndex</span><span class="s2">());</span>
+
+                    <span class="s1">Alert alert </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Alert</span><span class="s2">(</span><span class="s1">Alert</span><span class="s2">.</span><span class="s1">AlertType</span><span class="s2">.</span><span class="s1">CONFIRMATION</span><span class="s2">);</span>
+                    <span class="s1">alert</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Confirmar eliminación&quot;</span><span class="s2">);</span>
+                    <span class="s1">alert</span><span class="s2">.</span><span class="s1">setHeaderText</span><span class="s2">(</span><span class="s4">&quot;¿Eliminar alumno?&quot;</span><span class="s2">);</span>
+                    <span class="s1">alert</span><span class="s2">.</span><span class="s1">setContentText</span><span class="s2">(</span><span class="s4">&quot;¿Estás seguro de que deseas eliminar al alumno &quot; </span><span class="s2">+</span>
+                            <span class="s1">alumno</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">() + </span><span class="s4">&quot; con matrícula &quot; </span><span class="s2">+ </span><span class="s1">alumno</span><span class="s2">.</span><span class="s1">getMatricula</span><span class="s2">() + </span><span class="s4">&quot;?&quot;</span><span class="s2">);</span>
+
+                    <span class="s1">alert</span><span class="s2">.</span><span class="s1">showAndWait</span><span class="s2">().</span><span class="s1">ifPresent</span><span class="s2">(</span><span class="s1">response -&gt; </span><span class="s2">{</span>
+                        <span class="s0">if </span><span class="s2">(</span><span class="s1">response </span><span class="s2">== </span><span class="s1">ButtonType</span><span class="s2">.</span><span class="s1">OK</span><span class="s2">) {</span>
+                            <span class="s1">DataStore</span><span class="s2">.</span><span class="s1">eliminados</span><span class="s2">.</span><span class="s1">push</span><span class="s2">(</span><span class="s1">alumno</span><span class="s2">); </span><span class="s5">// Guardamos en pila global</span>
+                            <span class="s1">alumnos</span><span class="s2">.</span><span class="s1">remove</span><span class="s2">(</span><span class="s1">alumno</span><span class="s2">);</span>
+                        <span class="s2">}</span>
+                    <span class="s2">});</span>
+                <span class="s2">});</span>
+            <span class="s2">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">protected void </span><span class="s1">updateItem</span><span class="s2">(</span><span class="s1">Void item</span><span class="s2">, </span><span class="s0">boolean </span><span class="s1">empty</span><span class="s2">) {</span>
+                <span class="s0">super</span><span class="s2">.</span><span class="s1">updateItem</span><span class="s2">(</span><span class="s1">item</span><span class="s2">, </span><span class="s1">empty</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">empty</span><span class="s2">) {</span>
+                    <span class="s1">setGraphic</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">setGraphic</span><span class="s2">(</span><span class="s1">btn</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">table</span><span class="s2">.</span><span class="s1">getColumns</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">colMatricula</span><span class="s2">, </span><span class="s1">colNombre</span><span class="s2">, </span><span class="s1">colEliminar</span><span class="s2">);</span>
+
+        <span class="s1">HBox botones </span><span class="s2">= </span><span class="s0">new </span><span class="s1">HBox</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">botones</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+
+        <span class="s1">Button btnGuardar </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;GUARDAR CAMBIOS&quot;</span><span class="s2">);</span>
+        <span class="s1">btnGuardar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightgreen; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">btnGuardar</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">e -&gt; btnGuardar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;&quot;</span><span class="s2">));</span>
+        <span class="s1">btnGuardar</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">e -&gt; btnGuardar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightgreen; -fx-font-weight: bold;&quot;</span><span class="s2">));</span>
+
+        <span class="s1">btnGuardar</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">Alert alert </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Alert</span><span class="s2">(</span><span class="s1">Alert</span><span class="s2">.</span><span class="s1">AlertType</span><span class="s2">.</span><span class="s1">INFORMATION</span><span class="s2">);</span>
+            <span class="s1">alert</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Guardado&quot;</span><span class="s2">);</span>
+            <span class="s1">alert</span><span class="s2">.</span><span class="s1">setHeaderText</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+            <span class="s1">alert</span><span class="s2">.</span><span class="s1">setContentText</span><span class="s2">(</span><span class="s4">&quot;Los cambios se han guardado en esta sesión.&quot;</span><span class="s2">);</span>
+            <span class="s1">alert</span><span class="s2">.</span><span class="s1">showAndWait</span><span class="s2">();</span>
+        <span class="s2">});</span>
+
+        <span class="s1">Button btnDeshacer </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;DESHACER&quot;</span><span class="s2">);</span>
+        <span class="s1">btnDeshacer</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightblue; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">btnDeshacer</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">e -&gt; btnDeshacer</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;&quot;</span><span class="s2">));</span>
+        <span class="s1">btnDeshacer</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">e -&gt; btnDeshacer</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightblue; -fx-font-weight: bold;&quot;</span><span class="s2">));</span>
+
+        <span class="s1">btnDeshacer</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">eliminados</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+                <span class="s1">DataStore</span><span class="s2">.</span><span class="s1">Alumno ultimo </span><span class="s2">= </span><span class="s1">DataStore</span><span class="s2">.</span><span class="s1">eliminados</span><span class="s2">.</span><span class="s1">pop</span><span class="s2">();</span>
+                <span class="s1">alumnos</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">ultimo</span><span class="s2">);</span>
+                <span class="s1">alumnos</span><span class="s2">.</span><span class="s1">sort</span><span class="s2">((</span><span class="s1">a</span><span class="s2">, </span><span class="s1">b</span><span class="s2">) </span><span class="s1">-&gt; a</span><span class="s2">.</span><span class="s1">getMatricula</span><span class="s2">().</span><span class="s1">compareTo</span><span class="s2">(</span><span class="s1">b</span><span class="s2">.</span><span class="s1">getMatricula</span><span class="s2">())); </span><span class="s5">// mantener orden</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">Alert alert </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Alert</span><span class="s2">(</span><span class="s1">Alert</span><span class="s2">.</span><span class="s1">AlertType</span><span class="s2">.</span><span class="s1">WARNING</span><span class="s2">);</span>
+                <span class="s1">alert</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Nada que deshacer&quot;</span><span class="s2">);</span>
+                <span class="s1">alert</span><span class="s2">.</span><span class="s1">setHeaderText</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+                <span class="s1">alert</span><span class="s2">.</span><span class="s1">setContentText</span><span class="s2">(</span><span class="s4">&quot;No hay eliminaciones para revertir.&quot;</span><span class="s2">);</span>
+                <span class="s1">alert</span><span class="s2">.</span><span class="s1">showAndWait</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">botones</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">btnGuardar</span><span class="s2">, </span><span class="s1">btnDeshacer</span><span class="s2">);</span>
+
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">header</span><span class="s2">, </span><span class="s1">table</span><span class="s2">, </span><span class="s1">botones</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">content</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">Button getActiveButton</span><span class="s2">(</span><span class="s1">Button btnRegistrar</span><span class="s2">, </span><span class="s1">Button btnKardex</span><span class="s2">,</span>
+                                     <span class="s1">Button btnBaja</span><span class="s2">, </span><span class="s1">Button btnInscripcion</span><span class="s2">,</span>
+                                     <span class="s1">Button btnEditarKardex</span><span class="s2">, </span><span class="s1">Button btnSalir</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">btnBaja</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s5">//ayudamicabeza</span></pre>
+</body>
+</html>

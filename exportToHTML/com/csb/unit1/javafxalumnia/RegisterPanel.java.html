@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>RegisterPanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RegisterPanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Pos</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+
+<span class="s0">public class </span><span class="s1">RegisterPanel </span><span class="s0">extends </span><span class="s1">BasePanel </span><span class="s2">{</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">VBox buildContent</span><span class="s2">() {</span>
+        <span class="s1">VBox form </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">15</span><span class="s2">);</span>
+        <span class="s1">form</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">40</span><span class="s2">));</span>
+
+        <span class="s1">Label header </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;REGISTRAR ALUMNO&quot;</span><span class="s2">);</span>
+        <span class="s1">header</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-font-size: 22px; -fx-font-weight: bold; -fx-underline: true;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">GridPane grid </span><span class="s2">= </span><span class="s0">new </span><span class="s1">GridPane</span><span class="s2">();</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">setVgap</span><span class="s2">(</span><span class="s3">15</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">setHgap</span><span class="s2">(</span><span class="s3">10</span><span class="s2">);</span>
+
+        <span class="s1">Label lblNombre </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;NOMBRE DEL ALUMNO:&quot;</span><span class="s2">);</span>
+        <span class="s1">Label lblFecha </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;FECHA DE NACIMIENTO:&quot;</span><span class="s2">);</span>
+        <span class="s1">Label lblCarrera </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;CARRERA:&quot;</span><span class="s2">);</span>
+        <span class="s1">Label lblTelefono </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;TELEFONO:&quot;</span><span class="s2">);</span>
+        <span class="s1">Label lblDireccion </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;DIRECCION:&quot;</span><span class="s2">);</span>
+        <span class="s1">Label lblCampus </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;CAMPUS:&quot;</span><span class="s2">);</span>
+
+        <span class="s1">TextField txtNombre </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">TextField txtFecha </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">TextField txtCarrera </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">TextField txtTelefono </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">TextField txtDireccion </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">TextField txtCampus </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblNombre</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtNombre</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblFecha</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtFecha</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblCarrera</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">2</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtCarrera</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">2</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblTelefono</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">3</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtTelefono</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">3</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblDireccion</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">4</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtDireccion</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">4</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblCampus</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">5</span><span class="s2">);</span>
+        <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">txtCampus</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">5</span><span class="s2">);</span>
+
+        <span class="s1">HBox topContent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">HBox</span><span class="s2">(</span><span class="s3">30</span><span class="s2">, </span><span class="s1">header</span><span class="s2">);</span>
+        <span class="s1">topContent</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">TOP_LEFT</span><span class="s2">);</span>
+
+        <span class="s1">Button btnConfirmar </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;CONFIRMAR REGISTRO&quot;</span><span class="s2">);</span>
+        <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightgreen; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">e -&gt;</span>
+                <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;&quot;</span><span class="s2">)</span>
+        <span class="s2">);</span>
+        <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">e -&gt;</span>
+                <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: lightgreen; -fx-font-weight: bold;&quot;</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s1">btnConfirmar</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Alumno registrado: &quot; </span><span class="s2">+ </span><span class="s1">txtNombre</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">());</span>
+        <span class="s2">});</span>
+
+        <span class="s1">form</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">topContent</span><span class="s2">, </span><span class="s1">grid</span><span class="s2">, </span><span class="s1">btnConfirmar</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">form</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">Button getActiveButton</span><span class="s2">(</span><span class="s1">Button btnRegistrar</span><span class="s2">, </span><span class="s1">Button btnKardex</span><span class="s2">,</span>
+                                     <span class="s1">Button btnBaja</span><span class="s2">, </span><span class="s1">Button btnInscripcion</span><span class="s2">,</span>
+                                     <span class="s1">Button btnEditarKardex</span><span class="s2">, </span><span class="s1">Button btnSalir</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">btnRegistrar</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s5">//ayudamicabeza</span></pre>
+</body>
+</html>

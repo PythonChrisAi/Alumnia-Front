@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>BasePanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BasePanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">Label</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">BorderPane</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">VBox</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+
+<span class="s0">public abstract class </span><span class="s1">BasePanel </span><span class="s2">{</span>
+
+    <span class="s0">protected </span><span class="s1">BorderPane root</span><span class="s2">;</span>
+    <span class="s0">protected </span><span class="s1">Stage primaryStage</span><span class="s2">;</span>
+    <span class="s0">protected </span><span class="s1">String user</span><span class="s2">;</span>
+
+    <span class="s0">public void </span><span class="s1">start</span><span class="s2">(</span><span class="s1">Stage stage</span><span class="s2">, </span><span class="s1">String user</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">primaryStage </span><span class="s2">= </span><span class="s1">stage</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">user </span><span class="s2">= </span><span class="s1">user</span><span class="s2">;</span>
+
+        <span class="s1">root </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BorderPane</span><span class="s2">();</span>
+
+        <span class="s1">VBox sideMenu </span><span class="s2">= </span><span class="s1">buildSideMenu</span><span class="s2">();</span>
+        <span class="s1">root</span><span class="s2">.</span><span class="s1">setLeft</span><span class="s2">(</span><span class="s1">sideMenu</span><span class="s2">);</span>
+
+        <span class="s1">root</span><span class="s2">.</span><span class="s1">setCenter</span><span class="s2">(</span><span class="s1">buildContent</span><span class="s2">());</span>
+
+        <span class="s1">Scene scene </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">root</span><span class="s2">, </span><span class="s3">1080</span><span class="s2">, </span><span class="s3">666</span><span class="s2">);</span>
+        <span class="s1">stage</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s1">scene</span><span class="s2">);</span>
+        <span class="s1">stage</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Alumnia&quot;</span><span class="s2">);</span>
+        <span class="s1">stage</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">protected abstract </span><span class="s1">VBox buildContent</span><span class="s2">();</span>
+
+    <span class="s0">private </span><span class="s1">VBox buildSideMenu</span><span class="s2">() {</span>
+        <span class="s1">VBox sideMenu </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">15</span><span class="s2">);</span>
+        <span class="s1">sideMenu</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">20</span><span class="s2">));</span>
+        <span class="s1">sideMenu</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #42A5F5;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">Label logo </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;ALUMNIA&quot;</span><span class="s2">);</span>
+        <span class="s1">logo</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-text-fill: white; -fx-font-size: 36px; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+
+        <span class="s1">Button btnRegistrar </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;REGISTRAR ALUMNO&quot;</span><span class="s2">);</span>
+        <span class="s1">Button btnKardex </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;KARDEX&quot;</span><span class="s2">);</span>
+        <span class="s1">Button btnBaja </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;DAR DE BAJA ALUMNO&quot;</span><span class="s2">);</span>
+        <span class="s1">Button btnInscripcion </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;INSCRIPCION&quot;</span><span class="s2">);</span>
+        <span class="s1">Button btnEditarKardex </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;EDITAR KARDEX&quot;</span><span class="s2">);</span>
+        <span class="s1">Button btnSalir </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;CERRAR SESION&quot;</span><span class="s2">);</span>
+
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnRegistrar</span><span class="s2">);</span>
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnKardex</span><span class="s2">);</span>
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnBaja</span><span class="s2">);</span>
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnInscripcion</span><span class="s2">);</span>
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnEditarKardex</span><span class="s2">);</span>
+        <span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">btnSalir</span><span class="s2">);</span>
+
+        <span class="s1">marcarActivo</span><span class="s2">(</span><span class="s1">getActiveButton</span><span class="s2">(</span><span class="s1">btnRegistrar</span><span class="s2">, </span><span class="s1">btnKardex</span><span class="s2">, </span><span class="s1">btnBaja</span><span class="s2">, </span><span class="s1">btnInscripcion</span><span class="s2">, </span><span class="s1">btnEditarKardex</span><span class="s2">, </span><span class="s1">btnSalir</span><span class="s2">),</span>
+                <span class="s1">btnRegistrar</span><span class="s2">, </span><span class="s1">btnKardex</span><span class="s2">, </span><span class="s1">btnBaja</span><span class="s2">, </span><span class="s1">btnInscripcion</span><span class="s2">, </span><span class="s1">btnEditarKardex</span><span class="s2">, </span><span class="s1">btnSalir</span><span class="s2">);</span>
+
+        <span class="s1">btnRegistrar</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">RegisterPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+        <span class="s1">btnKardex</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">KardexPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+        <span class="s1">btnBaja</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">BajaPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+        <span class="s1">btnInscripcion</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">InscripcionPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+        <span class="s1">btnEditarKardex</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">EditarKPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+        <span class="s1">btnSalir</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s0">new </span><span class="s1">HomePanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception ex</span><span class="s2">) {</span>
+                <span class="s1">ex</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">sideMenu</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">logo</span><span class="s2">, </span><span class="s1">btnRegistrar</span><span class="s2">, </span><span class="s1">btnKardex</span><span class="s2">, </span><span class="s1">btnBaja</span><span class="s2">, </span><span class="s1">btnInscripcion</span><span class="s2">, </span><span class="s1">btnEditarKardex</span><span class="s2">, </span><span class="s1">btnSalir</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">sideMenu</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">protected void </span><span class="s1">marcarActivo</span><span class="s2">(</span><span class="s1">Button activo</span><span class="s2">, </span><span class="s1">Button... todos</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Button b </span><span class="s2">: </span><span class="s1">todos</span><span class="s2">) {</span>
+            <span class="s1">b</span><span class="s2">.</span><span class="s1">setMaxWidth</span><span class="s2">(</span><span class="s1">Double</span><span class="s2">.</span><span class="s1">MAX_VALUE</span><span class="s2">);</span>
+            <span class="s1">b</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">activo </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">activo</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: white; -fx-text-fill: black; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">addHoverEffect</span><span class="s2">(</span><span class="s1">Button btn</span><span class="s2">) {</span>
+        <span class="s1">btn</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">btn</span><span class="s2">.</span><span class="s1">getStyle</span><span class="s2">().</span><span class="s1">contains</span><span class="s2">(</span><span class="s4">&quot;white; -fx-text-fill: black;&quot;</span><span class="s2">)) {</span>
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #0D47A1; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s1">btn</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">btn</span><span class="s2">.</span><span class="s1">getStyle</span><span class="s2">().</span><span class="s1">contains</span><span class="s2">(</span><span class="s4">&quot;white; -fx-text-fill: black;&quot;</span><span class="s2">)) {</span>
+                <span class="s1">btn</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">protected abstract </span><span class="s1">Button getActiveButton</span><span class="s2">(</span><span class="s1">Button btnRegistrar</span><span class="s2">, </span><span class="s1">Button btnKardex</span><span class="s2">, </span><span class="s1">Button btnBaja</span><span class="s2">, </span><span class="s1">Button btnInscripcion</span><span class="s2">, </span><span class="s1">Button btnEditarKardex</span><span class="s2">, </span><span class="s1">Button btnSalir</span><span class="s2">);</span>
+<span class="s2">}</span>
+<span class="s5">//ayudamicabeza</span></pre>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>HomePanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HomePanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">animation</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">application</span><span class="s2">.</span><span class="s1">Application</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Pos</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">Image</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">paint</span><span class="s2">.</span><span class="s1">Color</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">shape</span><span class="s2">.</span><span class="s1">Rectangle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">Font</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">FontWeight</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">Text</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Duration</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">HomePanel </span><span class="s0">extends </span><span class="s1">Application </span><span class="s2">{</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">start</span><span class="s2">(</span><span class="s1">Stage primaryStage</span><span class="s2">) {</span>
+        <span class="s1">ImageView gifView </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageView</span><span class="s2">(</span><span class="s1">Assets</span><span class="s2">.</span><span class="s1">BACKGROUND_GIF</span><span class="s2">);</span>
+        <span class="s1">gifView</span><span class="s2">.</span><span class="s1">setFitWidth</span><span class="s2">(</span><span class="s3">1080</span><span class="s2">);</span>
+        <span class="s1">gifView</span><span class="s2">.</span><span class="s1">setFitHeight</span><span class="s2">(</span><span class="s3">666</span><span class="s2">);</span>
+        <span class="s1">gifView</span><span class="s2">.</span><span class="s1">setPreserveRatio</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+
+        <span class="s1">StackPane root </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StackPane</span><span class="s2">(</span><span class="s1">gifView</span><span class="s2">);</span>
+
+        <span class="s1">BorderPane content </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BorderPane</span><span class="s2">();</span>
+
+        <span class="s1">Text title </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Text</span><span class="s2">(</span><span class="s4">&quot;ALUMNIA&quot;</span><span class="s2">);</span>
+        <span class="s1">title</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s1">Font</span><span class="s2">.</span><span class="s1">font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">FontWeight</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">80</span><span class="s2">));</span>
+        <span class="s1">title</span><span class="s2">.</span><span class="s1">setFill</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+
+        <span class="s1">StackPane topPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StackPane</span><span class="s2">(</span><span class="s1">title</span><span class="s2">);</span>
+        <span class="s1">topPane</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">TOP_CENTER</span><span class="s2">);</span>
+        <span class="s1">topPane</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">60</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">));</span>
+
+        <span class="s1">Button loginButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;LOG-IN&quot;</span><span class="s2">);</span>
+        <span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getStyleClass</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s4">&quot;login-button&quot;</span><span class="s2">);</span>
+        <span class="s1">loginButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">animateButtonToPanel</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">loginButton</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception ex</span><span class="s2">) {</span>
+                <span class="s1">ex</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">StackPane centerPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StackPane</span><span class="s2">(</span><span class="s1">loginButton</span><span class="s2">);</span>
+        <span class="s1">centerPane</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+
+        <span class="s1">Button exitButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;➔ SALIR&quot;</span><span class="s2">);</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">getStyleClass</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s4">&quot;exit-button&quot;</span><span class="s2">);</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; primaryStage</span><span class="s2">.</span><span class="s1">close</span><span class="s2">());</span>
+
+        <span class="s1">StackPane bottomPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StackPane</span><span class="s2">(</span><span class="s1">exitButton</span><span class="s2">);</span>
+        <span class="s1">bottomPane</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">BOTTOM_RIGHT</span><span class="s2">);</span>
+        <span class="s1">bottomPane</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">0</span><span class="s2">, </span><span class="s3">20</span><span class="s2">, </span><span class="s3">20</span><span class="s2">, </span><span class="s3">0</span><span class="s2">));</span>
+
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setTop</span><span class="s2">(</span><span class="s1">topPane</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setCenter</span><span class="s2">(</span><span class="s1">centerPane</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setBottom</span><span class="s2">(</span><span class="s1">bottomPane</span><span class="s2">);</span>
+
+        <span class="s1">root</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">content</span><span class="s2">);</span>
+
+        <span class="s1">Scene scene </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">root</span><span class="s2">, </span><span class="s3">1080</span><span class="s2">, </span><span class="s3">666</span><span class="s2">);</span>
+        <span class="s1">scene</span><span class="s2">.</span><span class="s1">getStylesheets</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResource</span><span class="s2">(</span><span class="s4">&quot;/styles/home.css&quot;</span><span class="s2">).</span><span class="s1">toExternalForm</span><span class="s2">());</span>
+
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s1">scene</span><span class="s2">);</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Home - Alumnia&quot;</span><span class="s2">);</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">animateButtonToPanel</span><span class="s2">(</span><span class="s1">Stage primaryStage</span><span class="s2">, </span><span class="s1">Button loginButton</span><span class="s2">) {</span>
+
+        <span class="s1">Scene currentScene </span><span class="s2">= </span><span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">getScene</span><span class="s2">();</span>
+        <span class="s1">StackPane root </span><span class="s2">= (</span><span class="s1">StackPane</span><span class="s2">) </span><span class="s1">currentScene</span><span class="s2">.</span><span class="s1">getRoot</span><span class="s2">();</span>
+
+        <span class="s0">double </span><span class="s1">buttonCenterX </span><span class="s2">= </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">localToScene</span><span class="s2">(</span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getBoundsInLocal</span><span class="s2">()).</span><span class="s1">getMinX</span><span class="s2">() + </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">() / </span><span class="s3">2</span><span class="s2">;</span>
+        <span class="s0">double </span><span class="s1">buttonCenterY </span><span class="s2">= </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">localToScene</span><span class="s2">(</span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getBoundsInLocal</span><span class="s2">()).</span><span class="s1">getMinY</span><span class="s2">() + </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">() / </span><span class="s3">2</span><span class="s2">;</span>
+
+        <span class="s1">Rectangle buttonCopy </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Rectangle</span><span class="s2">(</span>
+                <span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">(),</span>
+                <span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">(),</span>
+                <span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span>
+        <span class="s2">);</span>
+
+        <span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">setLayoutX</span><span class="s2">(</span><span class="s1">buttonCenterX </span><span class="s2">- </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">() / </span><span class="s3">2</span><span class="s2">);</span>
+        <span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">setLayoutY</span><span class="s2">(</span><span class="s1">buttonCenterY </span><span class="s2">- </span><span class="s1">loginButton</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">() / </span><span class="s3">2</span><span class="s2">);</span>
+        <span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">setArcWidth</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">setArcHeight</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+
+        <span class="s1">StackPane animationOverlay </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StackPane</span><span class="s2">();</span>
+        <span class="s1">animationOverlay</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Background</span><span class="s2">.</span><span class="s1">EMPTY</span><span class="s2">);</span>
+        <span class="s1">animationOverlay</span><span class="s2">.</span><span class="s1">setMouseTransparent</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s1">animationOverlay</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">buttonCopy</span><span class="s2">);</span>
+        <span class="s1">root</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">animationOverlay</span><span class="s2">);</span>
+
+        <span class="s0">double </span><span class="s1">targetWidth </span><span class="s2">= </span><span class="s3">600</span><span class="s2">;</span>
+        <span class="s0">double </span><span class="s1">targetHeight </span><span class="s2">= </span><span class="s3">450</span><span class="s2">;</span>
+        <span class="s0">double </span><span class="s1">targetCenterX </span><span class="s2">= </span><span class="s3">1080 </span><span class="s2">/ </span><span class="s3">2</span><span class="s2">;</span>
+        <span class="s0">double </span><span class="s1">targetCenterY </span><span class="s2">= (</span><span class="s3">666 </span><span class="s2">/ </span><span class="s3">2</span><span class="s2">) + </span><span class="s3">30</span><span class="s2">;</span>
+
+        <span class="s0">double </span><span class="s1">scaleX </span><span class="s2">= </span><span class="s1">targetWidth </span><span class="s2">/ </span><span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">();</span>
+        <span class="s0">double </span><span class="s1">scaleY </span><span class="s2">= </span><span class="s1">targetHeight </span><span class="s2">/ </span><span class="s1">buttonCopy</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">();</span>
+
+        <span class="s0">double </span><span class="s1">translateX </span><span class="s2">= (</span><span class="s1">targetCenterX </span><span class="s2">- </span><span class="s1">buttonCenterX</span><span class="s2">);</span>
+        <span class="s0">double </span><span class="s1">translateY </span><span class="s2">= (</span><span class="s1">targetCenterY </span><span class="s2">- </span><span class="s1">buttonCenterY</span><span class="s2">);</span>
+
+        <span class="s1">ScaleTransition scaleTransition </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ScaleTransition</span><span class="s2">(</span><span class="s1">Duration</span><span class="s2">.</span><span class="s1">seconds</span><span class="s2">(</span><span class="s3">0.8</span><span class="s2">), </span><span class="s1">buttonCopy</span><span class="s2">);</span>
+        <span class="s1">scaleTransition</span><span class="s2">.</span><span class="s1">setToX</span><span class="s2">(</span><span class="s1">scaleX</span><span class="s2">);</span>
+        <span class="s1">scaleTransition</span><span class="s2">.</span><span class="s1">setToY</span><span class="s2">(</span><span class="s1">scaleY</span><span class="s2">);</span>
+
+        <span class="s1">TranslateTransition translateTransition </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TranslateTransition</span><span class="s2">(</span><span class="s1">Duration</span><span class="s2">.</span><span class="s1">seconds</span><span class="s2">(</span><span class="s3">0.8</span><span class="s2">), </span><span class="s1">buttonCopy</span><span class="s2">);</span>
+        <span class="s1">translateTransition</span><span class="s2">.</span><span class="s1">setToX</span><span class="s2">(</span><span class="s1">translateX</span><span class="s2">);</span>
+        <span class="s1">translateTransition</span><span class="s2">.</span><span class="s1">setToY</span><span class="s2">(</span><span class="s1">translateY</span><span class="s2">);</span>
+
+        <span class="s1">ParallelTransition parallelTransition </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ParallelTransition</span><span class="s2">(</span>
+                <span class="s1">scaleTransition</span><span class="s2">, </span><span class="s1">translateTransition</span>
+        <span class="s2">);</span>
+
+        <span class="s1">parallelTransition</span><span class="s2">.</span><span class="s1">setOnFinished</span><span class="s2">(</span><span class="s1">event -&gt; </span><span class="s2">{</span>
+            <span class="s1">root</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">remove</span><span class="s2">(</span><span class="s1">animationOverlay</span><span class="s2">);</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s0">new </span><span class="s1">LoginPanel</span><span class="s2">().</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception ex</span><span class="s2">) {</span>
+                <span class="s1">ex</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">parallelTransition</span><span class="s2">.</span><span class="s1">play</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">launch</span><span class="s2">(</span><span class="s1">args</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s5">//ayudamicabeza</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

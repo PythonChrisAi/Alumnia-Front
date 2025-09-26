@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>KardexPanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+KardexPanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+
+<span class="s0">public class </span><span class="s1">KardexPanel </span><span class="s0">extends </span><span class="s1">BasePanel </span><span class="s2">{</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">VBox buildContent</span><span class="s2">() {</span>
+        <span class="s1">VBox content </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">40</span><span class="s2">));</span>
+
+        <span class="s1">Label header </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;CONSULTA DE KÁRDEX - Documento sin validez oficial&quot;</span><span class="s2">);</span>
+        <span class="s1">header</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-font-size: 18px; -fx-font-weight: bold;&quot;</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">header</span><span class="s2">);</span>
+
+        <span class="s1">ScrollPane scroll </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ScrollPane</span><span class="s2">();</span>
+        <span class="s1">scroll</span><span class="s2">.</span><span class="s1">setFitToWidth</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+
+        <span class="s1">VBox listaPeriodos </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">listaPeriodos</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">10</span><span class="s2">));</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s3">4</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">KardexDataStore</span><span class="s2">.</span><span class="s1">PeriodData pd </span><span class="s2">= </span><span class="s1">KardexDataStore</span><span class="s2">.</span><span class="s1">getPeriodos</span><span class="s2">().</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">);</span>
+
+            <span class="s1">VBox periodoBox </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">(</span><span class="s3">10</span><span class="s2">);</span>
+            <span class="s1">periodoBox</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">10</span><span class="s2">));</span>
+            <span class="s1">periodoBox</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5;&quot;</span><span class="s2">);</span>
+
+            <span class="s1">GridPane grid </span><span class="s2">= </span><span class="s0">new </span><span class="s1">GridPane</span><span class="s2">();</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">setHgap</span><span class="s2">(</span><span class="s3">20</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">setVgap</span><span class="s2">(</span><span class="s3">10</span><span class="s2">);</span>
+
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;Fecha&quot;</span><span class="s2">), </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;ID&quot;</span><span class="s2">), </span><span class="s3">1</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;Créditos&quot;</span><span class="s2">), </span><span class="s3">2</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;Materia&quot;</span><span class="s2">), </span><span class="s3">3</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s4">&quot;Calificación&quot;</span><span class="s2">), </span><span class="s3">4</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+
+            <span class="s1">Label lblFecha </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s1">pd</span><span class="s2">.</span><span class="s1">fecha</span><span class="s2">);</span>
+            <span class="s1">Label lblID </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s1">pd</span><span class="s2">.</span><span class="s1">id</span><span class="s2">);</span>
+            <span class="s1">Label lblCred </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s1">pd</span><span class="s2">.</span><span class="s1">creditos</span><span class="s2">);</span>
+            <span class="s1">Label lblMat </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s1">pd</span><span class="s2">.</span><span class="s1">materia</span><span class="s2">);</span>
+            <span class="s1">Label lblCal </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">(</span><span class="s1">pd</span><span class="s2">.</span><span class="s1">calificacion</span><span class="s2">);</span>
+
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblFecha</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblID</span><span class="s2">, </span><span class="s3">1</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblCred</span><span class="s2">, </span><span class="s3">2</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblMat</span><span class="s2">, </span><span class="s3">3</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+            <span class="s1">grid</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">lblCal</span><span class="s2">, </span><span class="s3">4</span><span class="s2">, </span><span class="s3">1</span><span class="s2">);</span>
+
+            <span class="s1">Hyperlink verDetalle </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Hyperlink</span><span class="s2">(</span><span class="s4">&quot;Ver detalle&quot;</span><span class="s2">);</span>
+            <span class="s1">verDetalle</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s0">new </span><span class="s1">MateriaDetallePanel</span><span class="s2">(</span><span class="s1">lblMat</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">()).</span><span class="s1">start</span><span class="s2">(</span><span class="s1">primaryStage</span><span class="s2">, </span><span class="s1">user</span><span class="s2">));</span>
+
+            <span class="s1">periodoBox</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">grid</span><span class="s2">, </span><span class="s1">verDetalle</span><span class="s2">);</span>
+
+            <span class="s1">TitledPane tp </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TitledPane</span><span class="s2">(</span><span class="s4">&quot;PERIODO &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">, </span><span class="s1">periodoBox</span><span class="s2">);</span>
+            <span class="s1">listaPeriodos</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">tp</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">scroll</span><span class="s2">.</span><span class="s1">setContent</span><span class="s2">(</span><span class="s1">listaPeriodos</span><span class="s2">);</span>
+        <span class="s1">content</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">scroll</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">content</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">Button getActiveButton</span><span class="s2">(</span><span class="s1">Button btnRegistrar</span><span class="s2">, </span><span class="s1">Button btnKardex</span><span class="s2">,</span>
+                                     <span class="s1">Button btnBaja</span><span class="s2">, </span><span class="s1">Button btnInscripcion</span><span class="s2">,</span>
+                                     <span class="s1">Button btnEditarKardex</span><span class="s2">, </span><span class="s1">Button btnSalir</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">btnKardex</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s5">//ayudamicabeza</span></pre>
+</body>
+</html>

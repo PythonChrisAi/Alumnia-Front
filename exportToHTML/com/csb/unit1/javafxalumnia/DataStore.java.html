@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>DataStore.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DataStore.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">csb</span><span class="s2">.</span><span class="s1">unit1</span><span class="s2">.</span><span class="s1">javafxalumnia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">collections</span><span class="s2">.</span><span class="s1">FXCollections</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">collections</span><span class="s2">.</span><span class="s1">ObservableList</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Stack</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">DataStore </span><span class="s2">{</span>
+
+    <span class="s0">public static class </span><span class="s1">Alumno </span><span class="s2">{</span>
+        <span class="s0">private </span><span class="s1">String matricula</span><span class="s2">;</span>
+        <span class="s0">private </span><span class="s1">String nombre</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">Alumno</span><span class="s2">(</span><span class="s1">String matricula</span><span class="s2">, </span><span class="s1">String nombre</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">matricula </span><span class="s2">= </span><span class="s1">matricula</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s2">= </span><span class="s1">nombre</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">String getMatricula</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">matricula</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">String getNombre</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">nombre</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static final </span><span class="s1">ObservableList</span><span class="s2">&lt;</span><span class="s1">Alumno</span><span class="s2">&gt; </span><span class="s1">alumnos </span><span class="s2">= </span><span class="s1">FXCollections</span><span class="s2">.</span><span class="s1">observableArrayList</span><span class="s2">(</span>
+            <span class="s0">new </span><span class="s1">Alumno</span><span class="s2">(</span><span class="s3">&quot;01928321&quot;</span><span class="s2">, </span><span class="s3">&quot;Jordi Azael Martínez Jimenez&quot;</span><span class="s2">),</span>
+            <span class="s0">new </span><span class="s1">Alumno</span><span class="s2">(</span><span class="s3">&quot;01928322&quot;</span><span class="s2">, </span><span class="s3">&quot;Diego Armando Zamora Jurado&quot;</span><span class="s2">),</span>
+            <span class="s0">new </span><span class="s1">Alumno</span><span class="s2">(</span><span class="s3">&quot;01928323&quot;</span><span class="s2">, </span><span class="s3">&quot;Luis Gabriel Treviño Mendiola&quot;</span><span class="s2">),</span>
+            <span class="s0">new </span><span class="s1">Alumno</span><span class="s2">(</span><span class="s3">&quot;01928324&quot;</span><span class="s2">, </span><span class="s3">&quot;Christopher Sustaita Barrón&quot;</span><span class="s2">)</span>
+    <span class="s2">);</span>
+
+    <span class="s0">public static final </span><span class="s1">Stack</span><span class="s2">&lt;</span><span class="s1">Alumno</span><span class="s2">&gt; </span><span class="s1">eliminados </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Stack</span><span class="s2">&lt;&gt;();</span>
+<span class="s2">}</span>
+<span class="s4">//ayudamicabeza</span></pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.csb.unit1.javafxalumnia.controller.AlumnoController">
+
+    <center>
+        <TableView fx:id="alumnoTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="200"/>
+                <TableColumn fx:id="correoColumn" text="Correo" prefWidth="250"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
