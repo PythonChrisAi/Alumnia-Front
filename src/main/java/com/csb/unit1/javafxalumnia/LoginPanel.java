@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Map;
+
 public class LoginPanel extends Application {
 
     private boolean darkMode = false;
@@ -176,14 +178,24 @@ public class LoginPanel extends Application {
     }
 
     private DataStore.User autenticarUsuario(String matricula, String password) {
-        if ("admin".equals(matricula) && "admin123".equals(password)) {
-            return new DataStore.User(matricula, "admin");
-        } else if ("alumno".equals(matricula) && "alumno123".equals(password)) {
-            return new DataStore.User(matricula, "alumno");
-        } else if ("profesor".equals(matricula) && "profesor123".equals(password)) {
-            return new DataStore.User(matricula, "profesor");
-        } else if ("Chris".equals(matricula) && "Sbs".equals(password)) {
-            return new DataStore.User(matricula, "admin"); // Mantener compatibilidad
+        try {
+            Map<String, Object> response = ApiClient.login(matricula, password);
+
+            Boolean success = (Boolean) response.get("success");
+            if (success != null && success) {
+                String role = (String) response.get("role");
+                String userMatricula = (String) response.get("matricula");
+
+                System.out.println("✅ Login exitoso - Usuario: " + userMatricula + " - Rol: " + role);
+
+                return new DataStore.User(userMatricula, role);
+            } else {
+                String message = (String) response.get("message");
+                errorLabel.setText("❌ " + message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorLabel.setText("❌ Error de conexión con el servidor");
         }
         return null;
     }

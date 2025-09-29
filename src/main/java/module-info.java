@@ -9,6 +9,7 @@ module com.csb.unit1.javafxalumnia {
     // Apache HttpClient5 (automatic modules por artifactId)
     requires org.apache.httpcomponents.client5.httpclient5;
     requires org.apache.httpcomponents.core5.httpcore5;
+    requires java.net.http;
 
     // Abrir tus modelos a Jackson
     opens com.csb.unit1.javafxalumnia.model to com.fasterxml.jackson.databind;

@@ -10,160 +10,276 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.List;
+import java.util.Map;
+
 public class InscripcionPanel extends BasePanel {
 
-    public static class Grupo {
-        private String periodo;
-        private String id;
-        private int creditos;
-        private String nombreMateria;
-        private String docente;
-        private String grupo;
+    private TableView<GrupoCompleto> tablaGrupos;
+    private String materiaSeleccionada = "Programación Orientada a Objetos";
 
-        public Grupo(String periodo, String id, int creditos, String nombreMateria, String docente, String grupo) {
-            this.periodo = periodo;
-            this.id = id;
-            this.creditos = creditos;
-            this.nombreMateria = nombreMateria;
-            this.docente = docente;
-            this.grupo = grupo;
+    // Clase para mostrar grupos completos
+    public static class GrupoCompleto {
+        private String id;
+        private String nombre;
+        private String materia;
+        private String docente;
+        private String periodo;
+        private String clave;
+        private int cupo;
+        private int inscritos;
+        private int disponibles;
+
+        public GrupoCompleto(DataStore.Grupo grupo) {
+            this.id = grupo.getId();
+            this.nombre = grupo.getNombre();
+            this.materia = grupo.getMateria();
+            this.docente = grupo.getDocente();
+            this.periodo = grupo.getPeriodo();
+            this.clave = grupo.getClave();
+            this.cupo = 30; // Valor por defecto
+            this.inscritos = 0; // Valor por defecto
+            this.disponibles = this.cupo - this.inscritos;
         }
 
-        public String getPeriodo() { return periodo; }
+        // Getters
         public String getId() { return id; }
-        public int getCreditos() { return creditos; }
-        public String getNombreMateria() { return nombreMateria; }
+        public String getNombre() { return nombre; }
+        public String getMateria() { return materia; }
         public String getDocente() { return docente; }
-        public String getGrupo() { return grupo; }
+        public String getPeriodo() { return periodo; }
+        public String getClave() { return clave; }
+        public int getCupo() { return cupo; }
+        public int getInscritos() { return inscritos; }
+        public int getDisponibles() { return disponibles; }
+        public String getEstado() { return disponibles > 0 ? "DISPONIBLE" : "LLENO"; }
     }
 
     @Override
     protected VBox buildContent() {
-        return buildMateriasPage();
-    }
-
-    private VBox buildMateriasPage() {
-        VBox content = new VBox(30);
-        content.setPadding(new Insets(40));
-        content.setAlignment(Pos.TOP_CENTER);
-
-        Label header = new Label("INSCRIPCIÓN");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 22));
-        header.setStyle("-fx-underline: true;");
-
-        GridPane grid = new GridPane();
-        grid.setHgap(50);
-        grid.setVgap(30);
-        grid.setAlignment(Pos.CENTER);
-
-        for (int i = 1; i <= 6; i++) {
-            Button btnMateria = new Button("MATERIA " + i);
-            btnMateria.setMinWidth(200);
-            btnMateria.setMinHeight(60);
-            btnMateria.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-            btnMateria.setStyle("-fx-background-color: #E0E0E0; -fx-font-weight: bold;");
-
-            btnMateria.setOnMouseEntered(e -> btnMateria.setStyle("-fx-background-color: #90CAF9; -fx-font-weight: bold;"));
-            btnMateria.setOnMouseExited(e -> btnMateria.setStyle("-fx-background-color: #E0E0E0; -fx-font-weight: bold;"));
-
-            int materiaIndex = i;
-            btnMateria.setOnAction(e -> {
-                BorderPane root = (BorderPane) btnMateria.getScene().getRoot();
-                VBox gruposPage = buildGruposPage("MATERIA " + materiaIndex);
-                root.setCenter(gruposPage);
-            });
-
-            grid.add(btnMateria, (i - 1) % 2, (i - 1) / 2);
-        }
-
-        content.getChildren().addAll(header, grid);
-        return content;
-    }
-
-    private VBox buildGruposPage(String materia) {
         VBox content = new VBox(20);
         content.setPadding(new Insets(40));
         content.setAlignment(Pos.TOP_CENTER);
 
-        Label header = new Label("GRUPOS DISPONIBLES - " + materia);
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        Label header = new Label("INSCRIPCIÓN A MATERIAS");
+        header.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         header.setStyle("-fx-underline: true;");
 
-        TableView<Grupo> table = new TableView<>();
-        table.setPrefHeight(400);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        // Panel de información del alumno
+        VBox infoAlumno = new VBox(10);
+        infoAlumno.setStyle("-fx-background-color: #E3F2FD; -fx-padding: 15; -fx-border-radius: 5;");
 
-        TableColumn<Grupo, String> colPeriodo = new TableColumn<>("PERIODO");
-        colPeriodo.setCellValueFactory(new PropertyValueFactory<>("periodo"));
+        String nombreAlumno = "No identificado";
+        for (DataStore.Alumno alumno : DataStore.alumnos) {
+            if (alumno.getMatricula().equals(user)) {
+                nombreAlumno = alumno.getNombre();
+                break;
+            }
+        }
 
-        TableColumn<Grupo, String> colId = new TableColumn<>("ID");
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        Label lblAlumno = new Label("Alumno: " + nombreAlumno);
+        Label lblMatricula = new Label("Matrícula: " + user);
+        lblAlumno.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        lblMatricula.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
 
-        TableColumn<Grupo, Integer> colCreditos = new TableColumn<>("CRÉDITOS");
-        colCreditos.setCellValueFactory(new PropertyValueFactory<>("creditos"));
+        infoAlumno.getChildren().addAll(lblAlumno, lblMatricula);
 
-        TableColumn<Grupo, String> colNombre = new TableColumn<>("NOMBRE MATERIA");
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreMateria"));
+        // Controles de búsqueda
+        HBox controles = new HBox(20);
+        controles.setAlignment(Pos.CENTER_LEFT);
 
-        TableColumn<Grupo, String> colDocente = new TableColumn<>("DOCENTE");
+        Label lblMateria = new Label("Materia:");
+        ComboBox<String> cmbMaterias = new ComboBox<>();
+
+        // Obtener materias únicas
+        ObservableList<String> materias = FXCollections.observableArrayList();
+        for (DataStore.Grupo grupo : DataStore.grupos) {
+            if (!materias.contains(grupo.getMateria())) {
+                materias.add(grupo.getMateria());
+            }
+        }
+
+        cmbMaterias.setItems(materias);
+        cmbMaterias.setValue(materiaSeleccionada);
+
+        cmbMaterias.setOnAction(e -> {
+            materiaSeleccionada = cmbMaterias.getValue();
+            actualizarTabla();
+        });
+
+        Button btnMisInscripciones = new Button("VER MIS INSCRIPCIONES");
+        btnMisInscripciones.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold;");
+        btnMisInscripciones.setOnAction(e -> mostrarMisInscripciones());
+
+        controles.getChildren().addAll(lblMateria, cmbMaterias, btnMisInscripciones);
+
+        // Tabla de grupos
+        tablaGrupos = new TableView<>();
+        tablaGrupos.setPrefHeight(400);
+        configurarTabla();
+
+        content.getChildren().addAll(header, infoAlumno, controles, tablaGrupos);
+        return content;
+    }
+
+    private void configurarTabla() {
+        tablaGrupos.getColumns().clear();
+        tablaGrupos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        TableColumn<GrupoCompleto, String> colGrupo = new TableColumn<>("GRUPO");
+        colGrupo.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colGrupo.setStyle("-fx-alignment: CENTER;");
+
+        TableColumn<GrupoCompleto, String> colDocente = new TableColumn<>("DOCENTE");
         colDocente.setCellValueFactory(new PropertyValueFactory<>("docente"));
+        colDocente.setStyle("-fx-alignment: CENTER_LEFT;");
 
-        TableColumn<Grupo, String> colGrupo = new TableColumn<>("GRUPO");
-        colGrupo.setCellValueFactory(new PropertyValueFactory<>("grupo"));
+        TableColumn<GrupoCompleto, String> colPeriodo = new TableColumn<>("PERIODO");
+        colPeriodo.setCellValueFactory(new PropertyValueFactory<>("periodo"));
+        colPeriodo.setStyle("-fx-alignment: CENTER;");
 
-        table.getColumns().addAll(colPeriodo, colId, colCreditos, colNombre, colDocente, colGrupo);
+        TableColumn<GrupoCompleto, String> colClave = new TableColumn<>("CLAVE");
+        colClave.setCellValueFactory(new PropertyValueFactory<>("clave"));
+        colClave.setStyle("-fx-alignment: CENTER;");
 
-        ObservableList<Grupo> grupos = FXCollections.observableArrayList(
-                new Grupo("2025-1", "MAT101", 8, materia, "Profesor A", "G1"),
-                new Grupo("2025-1", "MAT102", 8, materia, "Profesor B", "G2"),
-                new Grupo("2025-1", "MAT103", 8, materia, "Profesor C", "G3")
-        );
-        table.setItems(grupos);
+        TableColumn<GrupoCompleto, Integer> colCupo = new TableColumn<>("CUPO");
+        colCupo.setCellValueFactory(new PropertyValueFactory<>("cupo"));
+        colCupo.setStyle("-fx-alignment: CENTER;");
 
-        HBox botones = new HBox(20);
-        botones.setAlignment(Pos.CENTER);
+        TableColumn<GrupoCompleto, Integer> colDisponibles = new TableColumn<>("DISPONIBLES");
+        colDisponibles.setCellValueFactory(new PropertyValueFactory<>("disponibles"));
+        colDisponibles.setStyle("-fx-alignment: CENTER;");
 
-        Button btnConfirmar = new Button("CONFIRMAR INSCRIPCIÓN");
-        btnConfirmar.setStyle("-fx-background-color: lightgreen; -fx-font-weight: bold;");
-        btnConfirmar.setOnMouseEntered(e -> btnConfirmar.setStyle("-fx-background-color: #66BB6A; -fx-font-weight: bold;"));
-        btnConfirmar.setOnMouseExited(e -> btnConfirmar.setStyle("-fx-background-color: lightgreen; -fx-font-weight: bold;"));
-
-        btnConfirmar.setOnAction(e -> {
-            Grupo seleccionado = table.getSelectionModel().getSelectedItem();
-            if (seleccionado != null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Inscripción exitosa");
-                alert.setHeaderText(null);
-                alert.setContentText("Te has inscrito en " + seleccionado.getNombreMateria() +
-                        " con el docente " + seleccionado.getDocente() +
-                        " (Grupo " + seleccionado.getGrupo() + ")");
-                alert.showAndWait();
-
-                BorderPane root = (BorderPane) btnConfirmar.getScene().getRoot();
-                root.setCenter(buildMateriasPage());
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Ningún grupo seleccionado");
-                alert.setHeaderText(null);
-                alert.setContentText("Por favor selecciona un grupo antes de confirmar.");
-                alert.showAndWait();
+        TableColumn<GrupoCompleto, String> colEstado = new TableColumn<>("ESTADO");
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colEstado.setCellFactory(column -> new TableCell<GrupoCompleto, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(item);
+                    if ("DISPONIBLE".equals(item)) {
+                        setStyle("-fx-text-fill: #27ae60; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-text-fill: #e74c3c; -fx-font-weight: bold;");
+                    }
+                }
             }
         });
+        colEstado.setStyle("-fx-alignment: CENTER;");
 
-        Button btnVolver = new Button("VOLVER");
-        btnVolver.setStyle("-fx-background-color: lightblue; -fx-font-weight: bold;");
-        btnVolver.setOnMouseEntered(e -> btnVolver.setStyle("-fx-background-color: #64B5F6; -fx-font-weight: bold;"));
-        btnVolver.setOnMouseExited(e -> btnVolver.setStyle("-fx-background-color: lightblue; -fx-font-weight: bold;"));
+        TableColumn<GrupoCompleto, Void> colInscribir = new TableColumn<>("ACCIÓN");
+        colInscribir.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("INSCRIBIRSE");
 
-        btnVolver.setOnAction(e -> {
-            BorderPane root = (BorderPane) btnVolver.getScene().getRoot();
-            root.setCenter(buildMateriasPage());
+            {
+                btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
+                btn.setOnAction(event -> {
+                    GrupoCompleto grupo = getTableView().getItems().get(getIndex());
+                    inscribirEnGrupo(grupo);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    GrupoCompleto grupo = getTableView().getItems().get(getIndex());
+                    if (grupo.getDisponibles() > 0) {
+                        btn.setDisable(false);
+                        btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
+                    } else {
+                        btn.setDisable(true);
+                        btn.setStyle("-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;");
+                    }
+                    setGraphic(btn);
+                }
+            }
         });
+        colInscribir.setStyle("-fx-alignment: CENTER;");
 
-        botones.getChildren().addAll(btnConfirmar, btnVolver);
+        tablaGrupos.getColumns().addAll(colGrupo, colDocente, colPeriodo, colClave,
+                colCupo, colDisponibles, colEstado, colInscribir);
+        actualizarTabla();
+    }
 
-        content.getChildren().addAll(header, table, botones);
-        return content;
+    private void actualizarTabla() {
+        ObservableList<GrupoCompleto> gruposFiltrados = FXCollections.observableArrayList();
+
+        for (DataStore.Grupo grupo : DataStore.grupos) {
+            if (grupo.getMateria().equals(materiaSeleccionada)) {
+                gruposFiltrados.add(new GrupoCompleto(grupo));
+            }
+        }
+
+        tablaGrupos.setItems(gruposFiltrados);
+        System.out.println("📊 Mostrando " + gruposFiltrados.size() + " grupos para: " + materiaSeleccionada);
+    }
+
+    private void inscribirEnGrupo(GrupoCompleto grupo) {
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar inscripción");
+        confirmacion.setHeaderText("¿Inscribirse en este grupo?");
+        confirmacion.setContentText("Materia: " + grupo.getMateria() +
+                "\nGrupo: " + grupo.getNombre() +
+                "\nDocente: " + grupo.getDocente() +
+                "\nClave: " + grupo.getClave());
+
+        confirmacion.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                boolean exito = DataStore.inscribirAlumnoEnGrupo(user, grupo.getId());
+
+                if (exito) {
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Inscripción exitosa");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("¡Inscripción realizada con éxito!\n\n" +
+                            "Materia: " + grupo.getMateria() + "\n" +
+                            "Grupo: " + grupo.getNombre() + "\n" +
+                            "Docente: " + grupo.getDocente());
+                    successAlert.showAndWait();
+
+                    // Actualizar tabla
+                    actualizarTabla();
+                } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Error en inscripción");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("No se pudo completar la inscripción. Intente nuevamente.");
+                    errorAlert.showAndWait();
+                }
+            }
+        });
+    }
+
+    private void mostrarMisInscripciones() {
+        List<Map<String, Object>> inscripciones = DataStore.obtenerInscripcionesAlumno(user);
+
+        if (inscripciones.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mis inscripciones");
+            alert.setHeaderText(null);
+            alert.setContentText("No estás inscrito en ningún grupo actualmente.");
+            alert.showAndWait();
+        } else {
+            StringBuilder contenido = new StringBuilder("Tus inscripciones actuales:\n\n");
+            for (Map<String, Object> inscripcion : inscripciones) {
+                contenido.append("• ").append(inscripcion.get("materia"))
+                        .append(" - ").append(inscripcion.get("docente"))
+                        .append(" (").append(inscripcion.get("periodo")).append(")\n");
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mis inscripciones");
+            alert.setHeaderText(null);
+            alert.setContentText(contenido.toString());
+            alert.showAndWait();
+        }
     }
 
     @Override
@@ -171,8 +287,6 @@ public class InscripcionPanel extends BasePanel {
                                      Button btnBaja, Button btnInscripcion,
                                      Button btnEditarKardex, Button btnCalificaciones,
                                      Button btnReportes, Button btnSalir) {
-        return null;
+        return btnInscripcion;
     }
-
 }
-//ayudamicabeza
